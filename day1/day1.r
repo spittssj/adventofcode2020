@@ -20,18 +20,14 @@ print(paste("Product: ", answer1[1] * answer1[2]))
 
 # second part: which three numbers add to 2020?
 # we divide this into 200 subproblems: which two numbers add to 2020 - X
-subproblem <- function(x) {
-  solution1(numbers, 2020 - x)
-}
-
-# generate the 200 subproblems
-subproblems <- lapply(numbers, subproblem)
+subproblems <- lapply(numbers, function(x) solution1(numbers, 2020-x))
 
 # which ones have solutions?
 indices2 <- which(lapply(subproblems,length) > 0)
 
 # recover the numbers
 answer2 <- numbers[indices2]
+
 print(paste("Answers:",  paste(answer2, collapse=" ")))
 print(paste("Product: ", answer2[1] * answer2[2] * answer2[3]))
 
